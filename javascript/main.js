@@ -4,21 +4,43 @@ async function capturarDadosMock(){
         const respostaDadosAgenda = await resposta.json();
         console.log(respostaDadosAgenda)
 
-        const divCard = document.getElementsById("cards_games");
+        const divCard = document.getElementById("cards_games");
         
-        divCard.innerHTML = dados.map((itemAgenda) => {
-            "Teste"     
-        });
+        divCard.innerHTML = respostaDadosAgenda.map((itemAgenda) => {
+            
+              return  `
+              <div class="cardItem">
+                <div class="dataGame"> 
+                    <img src="../imagens/calendar-solid.svg" alt=""> ${itemAgenda.dataJogo}
+                </div>
+                <img class="img-background" src="${itemAgenda.urlImagem}" alt="">
+                <div class="descricao">
+                    <p> <strong>${itemAgenda.nome}</strong> </p>
+                    <p>${itemAgenda.descricao} </p>
+                    <p><strong>Gamers: </strong></p>
+
+                    <div class="gamers">
+                        
+                        ${
+                            itemAgenda.gamers.map((gamerItem) => {
+                                return `<div class="gamerItem">${gamerItem}</div>`
+                            }).join('')
+                        }
+                        
+                    </div>
+
+                  
+                </div>  
+                <div class="assistir">
+                        <a class="assistirItem"> <img src="../imagens/youtube.svg" alt=""> Assistir </a>
+                </div>
+            </div>
+              `
+        }).join('');
     }
     catch (error){
-        console.log("Houve um erro ao consultar os dados ${error}")
+        console.log(`Houve um erro ao consultar os dados ${error}`)
     }
 }
 
 capturarDadosMock(); 
-
-function criarCard(dados){
-    for(var i = 0; i < dados.length; i++){
-
-    }
-}
