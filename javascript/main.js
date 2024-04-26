@@ -7,11 +7,12 @@ async function capturarDadosMock(){
         const divCard = document.getElementById("cards_games");
         
         divCard.innerHTML = respostaDadosAgenda.map((itemAgenda) => {
-            
+            var dataAgenda = new Date(itemAgenda.dataJogo)
               return  `
               <div class="cardItem">
                 <div class="dataGame"> 
-                    <img src="../imagens/calendar-solid.svg" alt=""> ${itemAgenda.dataJogo}
+                    <img src="../imagens/calendar-solid.svg" alt=""> 
+                    ${dataAgenda.getDay()}/${dataAgenda.getMonth()}/${dataAgenda.getFullYear()}
                 </div>
                 <img class="img-background" src="${itemAgenda.urlImagem}" alt="">
                 <div class="descricao">
